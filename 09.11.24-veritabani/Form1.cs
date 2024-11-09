@@ -126,7 +126,7 @@ namespace _09._11._24_veritabani
             cmd = new MySqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@ad", txtAd.Text);
             cmd.Parameters.AddWithValue("@soyad", txtSoyad.Text);
-            cmd.Parameters.AddWithValue("cinsiyet", cinsiyet);
+            cmd.Parameters.AddWithValue("@cinsiyet", cinsiyet);
             cmd.Parameters.AddWithValue("@dtarih", dtpDogumTarih.Value);
             cmd.Parameters.AddWithValue("@sinif", cmbSinif.Text);
             cmd.Parameters.AddWithValue("@puan", Convert.ToString(txtPuan.Text));
