@@ -106,16 +106,6 @@ namespace _09._11._24_veritabani
             dgvOgrenci.DataSource = dv;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            MySqlConnection conn2 = new MySqlConnection("Server=localhost; Port=3306;Database=hasan;Uid=hasan;Pwd='123';");
-            conn2.Open();
-
-
-
-
-        }
-
         private void btnSil_Click_1(object sender, EventArgs e)
         {
             string sql = "Delete From ogrenci Where ogrno=@no";
