@@ -129,7 +129,7 @@ namespace _09._11._24_veritabani
             cmd.Parameters.AddWithValue("@cinsiyet", cinsiyet);
             cmd.Parameters.AddWithValue("@dtarih", dtpDogumTarih.Value);
             cmd.Parameters.AddWithValue("@sinif", cmbSinif.Text);
-            cmd.Parameters.AddWithValue("@puan", Convert.ToString(txtPuan.Text));
+            cmd.Parameters.AddWithValue("@puan", Convert.ToInt32(txtPuan.Text));
             cmd.Parameters.AddWithValue("@no", Convert.ToInt32(txtNo.Text));
             conn.Open();
             cmd.ExecuteNonQuery();
