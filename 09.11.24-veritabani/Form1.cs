@@ -108,7 +108,7 @@ namespace _09._11._24_veritabani
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MySqlConnection conn2 = new MySqlConnection("Server=localhost; Port=3306;Database=akay;Uid=akay;Pwd='123';");
+            MySqlConnection conn2 = new MySqlConnection("Server=localhost; Port=3306;Database=hasan;Uid=hasan;Pwd='123';");
             conn2.Open();
 
 
