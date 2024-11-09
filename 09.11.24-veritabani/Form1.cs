@@ -64,12 +64,14 @@ namespace _09._11._24_veritabani
                 if (cins == "K")
                 {
                     rbKiz.Checked = true;
-                    rbErkek.Checked = false;                }
+                    rbErkek.Checked = false;                
+                }
                 else
                 {
                     rbKiz.Checked = false;
-                    rbErkek.Checked = true;                }
-                dtpDogumTarih.Text = dgvOgrenci.CurrentRow.Cells[4].Value.ToString();
+                    rbErkek.Checked = true;                
+                }
+                dtpDogumTarih.Value = Convert.ToDateTime(dgvOgrenci.CurrentRow.Cells[4].Value);
                 cmbSinif.Text = dgvOgrenci.CurrentRow.Cells[5].Value.ToString();
                 txtPuan.Text = dgvOgrenci.CurrentRow.Cells[6].Value.ToString();
             }
@@ -82,6 +84,28 @@ namespace _09._11._24_veritabani
 
         private void btnEkle_Click(object sender, EventArgs e)
         {
+            // Ad ve Soyad kontrolü
+            if (string.IsNullOrWhiteSpace(txtAd.Text) || string.IsNullOrWhiteSpace(txtSoyad.Text))
+            {
+                MessageBox.Show("Ad ve Soyad alanlarý boþ býrakýlamaz.");
+                return;
+            }
+
+            // Puan kontrolü
+            if (!int.TryParse(txtPuan.Text, out int puan))
+            {
+                MessageBox.Show("Puan geçerli bir sayý olmalýdýr.");
+                return;
+            }
+
+            // Sýnýf seçimi kontrolü
+            if (string.IsNullOrEmpty(cmbSinif.Text))
+            {
+                MessageBox.Show("Lütfen bir sýnýf seçin.");
+                return;
+            }
+
+            //veritabanýna kayýt iþlemi
             string sorgu = "Insert into ogrenci (ograd,ogrsoyad,cinsiyet,dtarih,sinif,puan) values (@ad,@soyad,@cinsiyet,@dtarih,@sinif,@puan)";
             cmd = new MySqlCommand(sorgu, conn);
             cmd.Parameters.AddWithValue("@ad", txtAd.Text);
@@ -102,7 +126,7 @@ namespace _09._11._24_veritabani
         private void txtAra_TextChanged(object sender, EventArgs e)
         {
             DataView dv = dt.DefaultView;
-            dv.RowFilter = "ograd LIKE '" + txtAra.Text + "%'";
+            dv.RowFilter = string.Format("ograd LIKE '{0}%' OR ogrsoyad LIKE '{0}%'", txtAra.Text);
             dgvOgrenci.DataSource = dv;
         }
 
